@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../screens/anime_detail.dart';
+
 class AnimeCard extends StatelessWidget {
   final String id;
   final String title;
@@ -11,10 +13,14 @@ class AnimeCard extends StatelessWidget {
     this.image,
   });
 
+  void _selectAnime(ctx) {
+    Navigator.of(ctx).pushNamed(AnimeDetail.routeName, arguments: id);
+  }
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () => _selectAnime(context),
       child: Padding(
         padding: const EdgeInsets.only(bottom: 10),
         child: Column(

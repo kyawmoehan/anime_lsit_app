@@ -23,7 +23,8 @@ class Anime {
   final int episodes;
   final Status status;
   final String aired;
-  final List<String> genres;
+  final String studio;
+  final Set<String> genres;
 
   const Anime({
     @required this.id,
@@ -34,6 +35,7 @@ class Anime {
     @required this.episodes,
     @required this.status,
     @required this.aired,
+    @required this.studio,
     @required this.genres,
   });
 }

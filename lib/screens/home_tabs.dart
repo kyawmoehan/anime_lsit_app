@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
 
+import '../models/anime.dart';
+
 import './anime_list.dart';
 import './favourites.dart';
 import './filters.dart';
 
 class HomeTabs extends StatefulWidget {
+  final List<Anime> avaliableAnimes;
+  final List<Anime> watchListAnimes;
+
+  const HomeTabs(this.avaliableAnimes, this.watchListAnimes);
+
   @override
   _HomeTabsState createState() => _HomeTabsState();
 }
@@ -18,12 +25,12 @@ class _HomeTabsState extends State<HomeTabs> {
     super.initState();
     _screens = [
       {
-        'page': AnimeList(),
+        'page': AnimeList(widget.avaliableAnimes),
         'title': 'Anime List',
       },
       {
-        'page': Favourites(),
-        'title': 'Favourites',
+        'page': Favourites(widget.watchListAnimes),
+        'title': 'Watch List',
       }
     ];
   }
@@ -43,7 +50,7 @@ class _HomeTabsState extends State<HomeTabs> {
           IconButton(
               icon: Icon(Icons.filter_list),
               onPressed: () {
-                Navigator.of(context).pushNamed(Filters.routeName);
+                Navigator.of(context).pushReplacementNamed(Filters.routeName);
               })
         ],
       ),
@@ -62,9 +69,9 @@ class _HomeTabsState extends State<HomeTabs> {
           ),
           BottomNavigationBarItem(
             icon: _selectedIndex == 1
-                ? Icon(Icons.star)
-                : Icon(Icons.star_outline),
-            label: 'Favourites',
+                ? Icon(Icons.bookmark_rounded)
+                : Icon(Icons.bookmark_outline_rounded),
+            label: 'Watch List',
           ),
         ],
       ),
